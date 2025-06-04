@@ -32,30 +32,26 @@ int main(){
         int n;
         cin >> n;
         vector<int> a(n);
-        
-        for(int i=0;i<n;i++) cin >> a[i];
  
-        int  temp_odd=0, temp_even =0;
-        bool x= false, b =false;
-        for(int i=1;i<n;i++){
-            if(a[i]&1    && a[i-1]&1){
-                temp_odd++;
-                b = true;
+        int total =0;
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+            if(a[i] == 2) total++;
+        }
+ 
+        int curr =0 , answer =-1;
+        for(int i=0;i<n;i++){
+            if(a[i] == 2){
+                curr++;
+                total--;
             }
-            else if(!(a[i]&1) && !(a[i-1]&1)){
-                temp_even++;
-                x = true;
+            if(curr == total) {
+                answer= i+1;
+                break;
             }
+            
         }
-        if(!x && !b){
-            cout<<0;
-        }
-        else if(!x && b){
-            cout<<temp_odd;
-        }
-        else if(x && !b) cout<<temp_even;
-        else cout<<temp_even+temp_odd;
-        cout<<endl;
+        cout << ((answer == -1) ? -1 : answer) << endl;
     }
 
     return 0;
